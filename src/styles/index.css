@@ -13,3 +13,54 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.inbox-close,
+.task-close {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(0);
+  transition: 0.3s ease;
+}
+
+.inbox-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-80px);
+  transition: 0.3s ease;
+}
+
+.task-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-150px);
+  transition: 0.3s ease;
+}
+
+.inbox-active,
+.task-active {
+  transform: translateX(0);
+  transition: 0.3s ease;
+  z-index: 200;
+}
+
+.btn-active {
+  position: absolute;
+  bottom: -5px;
+  right: -10px;
+  width: 64px;
+  height: 64px;
+}
+
+.task-modal-active {
+  opacity: 1;
+  padding: 24px 32px;
+  visibility: visible;
+  transition: 0.5s ease;
+  z-index: 200;
+}
+.task-modal-inactive {
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s ease;
+  z-index: 200;
+}

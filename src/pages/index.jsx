@@ -1,6 +1,7 @@
 import Container from "../components/Container";
 import Frame from "../components/Frame";
 import Modal from "../components/Modal";
+import PopupButton from "../components/PopupButton";
 import "../styles/index.css";
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
     <>
       <Container>
         <Frame>
-          <Modal />
+          <PopupButton />
         </Frame>
       </Container>
     </>

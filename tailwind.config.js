@@ -14,7 +14,7 @@ module.exports = {
           White: "#E0E0E0",
         },
         Indicator: {
-          Orange: "F8B76B",
+          Orange: "#F8B76B",
           Purple: "#8785FF",
           Red: "#EB5757",
           Yellow: "#F2C94C",

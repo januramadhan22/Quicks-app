@@ -7,7 +7,7 @@ import message from "../assets/question_answer_24px.png";
 import messageWhite from "../assets/question_answer_white_24px.png";
 import { TaskModal } from "../components/Modal";
 
-function PopupButton() {
+function PopupButton({ datas, newTask, changeTask, deleteTask }) {
   const [popUp, setPopUp] = useState(false);
   const [inboxActive, setInboxActive] = useState(false);
   const [taskActive, setTaskActive] = useState(false);
@@ -69,7 +69,12 @@ function PopupButton() {
                 : "task-modal-inactive"
             }`}
           >
-            <TaskModal />
+            <TaskModal
+              datas={datas}
+              addTask={newTask}
+              change={changeTask}
+              delete={deleteTask}
+            />
           </div>
           <div className="flex flex-col items-center gap-1">
             <p

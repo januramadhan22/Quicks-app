@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Button from "./CustomButton";
 import expand from "../assets/expand_more_24px.png";
 import axios from "axios";
-import Form from "./Form";
+import { Form, Chat } from "./Form";
+import search from "../assets/search_24px.png";
 
 function TaskModal() {
   const [dropDown, setDropDown] = useState(false);
@@ -157,11 +158,29 @@ function InboxModal() {
   const [listTasks, setListTasks] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
-  return <div className="w-full h-full flex flex-col">asdasdas</div>;
+  return (
+    <div className="w-full h-full flex flex-col">
+      <header className="w-full px-5 py-0.5 flex items-center gap-1 border border-Primary-Dark rounded-md">
+        <input
+          type="text"
+          placeholder="Search"
+          className="w-full text-Primary-Dark text-sm focus:outline-none"
+        />
+        <button>
+          <img
+            src={search}
+            alt="Search"
+            className="w-3 brightness-50 hover:brightness-0"
+          />
+        </button>
+      </header>
+      <Chat />
+    </div>
+  );
 }
 
 export { TaskModal, InboxModal };

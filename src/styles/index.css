@@ -14,6 +14,10 @@ code {
     monospace;
 }
 
+#btn-popup {
+  transition: 0.3s ease;
+}
+
 .inbox-close,
 .task-close {
   opacity: 0;
@@ -38,7 +42,6 @@ code {
 
 .inbox-active,
 .task-active {
-  transform: translateX(0);
   transition: 0.3s ease;
   z-index: 200;
 }
@@ -51,16 +54,27 @@ code {
   height: 64px;
 }
 
-.task-modal-active {
+.task-modal-active,
+.inbox-modal-active {
   opacity: 1;
   padding: 12px 16px;
   visibility: visible;
   transition: 0.5s ease;
   z-index: 200;
 }
-.task-modal-inactive {
+.task-modal-inactive,
+.inbox-modal-inactive {
   opacity: 0;
   visibility: hidden;
   transition: 0.5s ease;
   z-index: 200;
+}
+
+#list-task::-webkit-scrollbar {
+  width: 7px;
+}
+
+#list-task::-webkit-scrollbar-thumb {
+  background-color: #bdbdbd;
+  border-radius: 3px;
 }

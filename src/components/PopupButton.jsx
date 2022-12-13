@@ -5,7 +5,7 @@ import task from "../assets/chrome_reader_mode_24px.png";
 import taskWhite from "../assets/chrome_reader_mode_white_24px.png";
 import message from "../assets/question_answer_24px.png";
 import messageWhite from "../assets/question_answer_white_24px.png";
-import { TaskModal } from "../components/Modal";
+import { TaskModal, InboxModal } from "../components/Modal";
 
 function PopupButton({ datas, newTask, changeTask, deleteTask }) {
   const [popUp, setPopUp] = useState(false);
@@ -18,17 +18,33 @@ function PopupButton({ datas, newTask, changeTask, deleteTask }) {
         id="btn-popup"
         onClick={() => {
           setPopUp(!popUp);
+          setInboxActive(false);
+          setTaskActive(false);
         }}
-        className="absolute bottom-7 right-8 z-10 w-16 h-16 flex items-center justify-center bg-Primary-Blue rounded-full"
+        className={` ${
+          inboxActive + taskActive
+            ? "bg-Primary-Grey absolute bottom-7 right-9 z-10 w-16 h-16 flex items-center justify-center rounded-full"
+            : "bg-Primary-Blue absolute bottom-7 right-8 z-10 w-16 h-16 flex items-center justify-center rounded-full"
+        } `}
       >
         <img src={flash} alt="Flash" />
       </button>
       <div id="popup-menu">
         <div
-          className={`absolute bottom-8 right-9 flex flex-col items-center gap-1 ${
+          className={`absolute bottom-8 right-6 flex flex-col items-center gap-1 ${
             popUp ? "inbox-open" : "inbox-close"
-          } ${inboxActive ? "inbox-active" : "inbox-inactive"} `}
+          } ${inboxActive ? "inbox-active -right-11" : "inbox-inactive"} `}
         >
+          <div
+            id="task-modal"
+            className={`${
+              inboxActive
+                ? "w-[434px] h-[437px] bg-white rounded-md absolute right-0 bottom-[65px] border border-Primary-Grey inbox-modal-active"
+                : "inbox-modal-inactive"
+            }`}
+          >
+            <InboxModal />
+          </div>
           <p
             className={`font-semibold text-base text-Primary-White ${
               inboxActive
@@ -41,6 +57,7 @@ function PopupButton({ datas, newTask, changeTask, deleteTask }) {
           <button
             onClick={() => {
               setInboxActive(!inboxActive);
+              setTaskActive(false);
             }}
             id="btn-inbox"
             className={`w-14 h-14 flex items-center justify-center bg-Primary-White rounded-full ${
@@ -57,8 +74,8 @@ function PopupButton({ datas, newTask, changeTask, deleteTask }) {
         <div
           className={`absolute bottom-8 right-9 flex flex-col items-end gap-1 ${
             popUp ? "task-open" : "task-close"
-          } ${inboxActive ? "-right-8" : "right-8"} ${
-            taskActive ? "task-active" : "task-inactive"
+          } ${inboxActive ? "-right-8" : "right-6"} ${
+            taskActive ? "task-active -right-28" : "task-inactive"
           }`}
         >
           <div
@@ -89,6 +106,7 @@ function PopupButton({ datas, newTask, changeTask, deleteTask }) {
             <button
               onClick={() => {
                 setTaskActive(!taskActive);
+                setInboxActive(false);
               }}
               id="btn-task"
               className={`w-14 h-14 flex items-center justify-center bg-Primary-White rounded-full ${

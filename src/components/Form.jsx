@@ -7,6 +7,8 @@ import option from "../assets/more_horiz_24px.png";
 import calendar from "../assets/schedule_24px.png";
 import calendarEnd from "../assets/schedule_blue_24px.png";
 import edit from "../assets/edit_dark_24px.png";
+import userWhite from "../assets/person_white_24px.png";
+import userGrey from "../assets/person_24px.png";
 
 function Form({ addTask, key, title, completed, onDelete }) {
   const [open, setOpen] = useState(true);
@@ -127,4 +129,34 @@ function Form({ addTask, key, title, completed, onDelete }) {
   );
 }
 
-export default Form;
+function Chat() {
+  return (
+    <div className="w-full py-5 flex items-start gap-4 border-b border-Primary-Dark">
+      <div id="avatar" className="mt-2">
+        <div className="w-8 h-8 box-border rounded-full bg-Primary-Blue flex items-center justify-center">
+          <img src={userWhite} alt="User" className="w-4" />
+        </div>
+      </div>
+      <div id="field" className="w-full">
+        <div id="title" className="w-full flex items-baseline gap-4">
+          <p className="text-base font-semibold text-Primary-Blue">
+            109220-Naturalization
+          </p>
+          <p className="min-w-fit text-sm text-Primary-Grey">
+            01/01/2021 19.10
+          </p>
+        </div>
+        <div id="message">
+          <p className="text-sm font-semibold text-Primary-Dark">
+            Cameron Phillips :
+          </p>
+          <p className="max-w-fit text-sm text-Primary-Grey">
+            Please check this out!
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export { Form, Chat };

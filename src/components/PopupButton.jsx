@@ -13,7 +13,7 @@ function PopupButton({ datas, newTask, changeTask, deleteTask }) {
   const [taskActive, setTaskActive] = useState(false);
 
   return (
-    <div>
+    <div className="overflow-hidden">
       <button
         id="btn-popup"
         onClick={() => {
@@ -31,16 +31,16 @@ function PopupButton({ datas, newTask, changeTask, deleteTask }) {
       </button>
       <div id="popup-menu">
         <div
-          className={`absolute bottom-8 right-6 flex flex-col items-center gap-1 ${
+          className={`absolute bottom-8 right-7 flex flex-col items-center gap-1 ${
             popUp ? "inbox-open" : "inbox-close"
-          } ${inboxActive ? "inbox-active -right-11" : "inbox-inactive"} `}
+          } ${inboxActive ? "inbox-active" : "inbox-inactive"} `}
         >
           <div
-            id="task-modal"
+            id="inbox-modal"
             className={`${
               inboxActive
                 ? "w-[434px] h-[437px] bg-white rounded-md absolute right-0 bottom-[65px] border border-Primary-Grey inbox-modal-active"
-                : "inbox-modal-inactive"
+                : "w-[300px] h-[300px] bg-white rounded-md absolute right-0 bottom-[65px] border border-Primary-Grey inbox-modal-inactive"
             }`}
           >
             <InboxModal />
@@ -66,7 +66,7 @@ function PopupButton({ datas, newTask, changeTask, deleteTask }) {
           >
             <img
               src={inboxActive ? messageWhite : message}
-              alt="Task"
+              alt="Inbox"
               className="w-6"
             />
           </button>
@@ -74,8 +74,8 @@ function PopupButton({ datas, newTask, changeTask, deleteTask }) {
         <div
           className={`absolute bottom-8 right-9 flex flex-col items-end gap-1 ${
             popUp ? "task-open" : "task-close"
-          } ${inboxActive ? "-right-8" : "right-6"} ${
-            taskActive ? "task-active -right-28" : "task-inactive"
+          } ${inboxActive ? "-right-10" : "right-6"} ${
+            taskActive ? "task-active" : "task-inactive"
           }`}
         >
           <div
@@ -83,7 +83,7 @@ function PopupButton({ datas, newTask, changeTask, deleteTask }) {
             className={`${
               taskActive
                 ? "w-[434px] h-[437px] bg-white rounded-md absolute right-0 bottom-[65px] border border-Primary-Grey task-modal-active"
-                : "task-modal-inactive"
+                : "w-[300px] h-[300px] bg-white rounded-md absolute right-0 bottom-[65px] border border-Primary-Grey task-modal-inactive"
             }`}
           >
             <TaskModal

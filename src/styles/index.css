@@ -42,6 +42,7 @@ code {
 
 .inbox-active,
 .task-active {
+  transform: translateX(-10px);
   transition: 0.3s ease;
   z-index: 200;
 }

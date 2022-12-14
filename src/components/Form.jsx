@@ -9,6 +9,8 @@ import calendarEnd from "../assets/schedule_blue_24px.png";
 import edit from "../assets/edit_dark_24px.png";
 import userWhite from "../assets/person_white_24px.png";
 import userGrey from "../assets/person_24px.png";
+import backArrow from "../assets/arrow_back_24px.png";
+import close from "../assets/close_24px.png";
 
 function Form({ addTask, key, title, completed, onDelete }) {
   const [open, setOpen] = useState(true);
@@ -129,34 +131,124 @@ function Form({ addTask, key, title, completed, onDelete }) {
   );
 }
 
-function Chat() {
+function Inbox() {
+  const [openChat, setOpenChat] = useState(false);
+
+  const handleBack = () => {
+    setOpenChat(false);
+  };
+
   return (
-    <div className="w-full py-5 flex items-start gap-4 border-b border-Primary-Dark">
-      <div id="avatar" className="mt-2">
-        <div className="w-8 h-8 box-border rounded-full bg-Primary-Blue flex items-center justify-center">
-          <img src={userWhite} alt="User" className="w-4" />
+    <>
+      {openChat ? (
+        <Chat back={handleBack} />
+      ) : (
+        <div
+          onClick={() => {
+            setOpenChat(!openChat);
+          }}
+          className="w-full py-5 flex items-start gap-4 border-b border-Primary-Dark cursor-pointer"
+        >
+          <div id="avatar" className="mt-2">
+            <div className="w-8 h-8 box-border rounded-full bg-Primary-Blue flex items-center justify-center">
+              <img src={userWhite} alt="User" className="w-4" />
+            </div>
+          </div>
+          <div id="field" className="w-full">
+            <div id="title" className="w-full flex items-baseline gap-4">
+              <p className="text-base font-semibold text-Primary-Blue">
+                109220-Naturalization
+              </p>
+              <p className="min-w-fit text-sm text-Primary-Grey">
+                01/01/2021 19.10
+              </p>
+            </div>
+            <div id="message">
+              <p className="text-sm font-semibold text-Primary-Dark">
+                Cameron Phillips :
+              </p>
+              <p className="max-w-fit text-sm text-Primary-Grey">
+                Please check this out!
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+function Chat({ back }) {
+  return (
+    <div className="overflow-y-auto">
+      <header className="w-full flex items-center gap-3 px-3 py-2 border-b shadow-sm rounded-t-md absolute top-0 left-0 z-50 bg-white">
+        <button onClick={back} id="back-btn">
+          <img src={backArrow} alt="Back" className="w-4 brightness-0" />
+        </button>
+        <div className="w-full flex flex-col">
+          <p id="participant-name" className="font-semibold text-Primary-Blue">
+            Handoko, Rojali
+          </p>
+          <p id="total-participants" className="text-xs text-Primary-Grey">
+            2 Participants
+          </p>
+        </div>
+        <button onClick={back} id="close-btn">
+          <img src={close} alt="Close" className="w-3 brightness-0" />
+        </button>
+      </header>
+      <div className="w-full mt-6">
+        <div className="w-full flex items-center gap-4">
+          <span className="w-full h-0.5 bg-Chats-Light-Orange"></span>
+          <p className="w-full text-center text-Chats-Solid-Orange">
+            New Message
+          </p>
+          <span className="w-full h-0.5 bg-Chats-Light-Orange"></span>
+        </div>
+        <div className="w-full flex justify-end">
+          <div className="max-w-xs flex flex-col items-end">
+            <p className="text-sm font-semibold text-Chats-Solid-Purple">You</p>
+            <div className="flex items-start gap-2">
+              <button className="mt-2">
+                <img src={option} alt="Option" className="w-[15px]" />
+              </button>
+              <div className="p-2 bg-Chats-Light-Purple rounded-md text-sm text-Primary-Dark">
+                <p>Selamat Malam!!!</p>
+                <p>19.32</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-full flex justify-start">
+          <div className="max-w-xs flex flex-col items-start">
+            <p className="text-sm font-semibold text-Chats-Solid-Green">You</p>
+            <div className="flex items-start gap-2">
+              <div className="p-2 bg-Chats-Light-Green rounded-md text-sm text-Primary-Dark">
+                <p>Mantap" sam, solo player tapi bisa buat kek gitu</p>
+                <p>19.35</p>
+              </div>
+              <button className="mt-2">
+                <img src={option} alt="Option" className="w-[15px]" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-      <div id="field" className="w-full">
-        <div id="title" className="w-full flex items-baseline gap-4">
-          <p className="text-base font-semibold text-Primary-Blue">
-            109220-Naturalization
-          </p>
-          <p className="min-w-fit text-sm text-Primary-Grey">
-            01/01/2021 19.10
-          </p>
-        </div>
-        <div id="message">
-          <p className="text-sm font-semibold text-Primary-Dark">
-            Cameron Phillips :
-          </p>
-          <p className="max-w-fit text-sm text-Primary-Grey">
-            Please check this out!
-          </p>
-        </div>
-      </div>
+      <form className="absolute w-full bottom-0 left-0 flex gap-2 p-3">
+        <input
+          type="text"
+          placeholder="Type a new message"
+          className="w-full border px-3 py-1 rounded-md text-sm text-Primary-Dark focus:outline-Primary-Grey"
+        />
+        <button
+          id="Send-btn"
+          className="bg-Primary-Blue px-3 py-1 text-sm font-semibold text-white rounded-md"
+        >
+          Send
+        </button>
+      </form>
     </div>
   );
 }
 
-export { Form, Chat };
+export { Form, Inbox, Chat };

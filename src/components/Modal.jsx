@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Button from "./CustomButton";
 import expand from "../assets/expand_more_24px.png";
 import axios from "axios";
-import { Form, Chat } from "./Form";
+import { Chat, Form, Inbox } from "./Form";
 import search from "../assets/search_24px.png";
 
 function TaskModal() {
@@ -153,7 +153,7 @@ function TaskModal() {
   );
 }
 
-function InboxModal() {
+function InboxModal({ onClick }) {
   const [dropDown, setDropDown] = useState(false);
   const [listTasks, setListTasks] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -178,7 +178,7 @@ function InboxModal() {
           />
         </button>
       </header>
-      <Chat />
+      <Inbox />
     </div>
   );
 }
